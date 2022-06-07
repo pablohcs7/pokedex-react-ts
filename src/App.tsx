@@ -1,12 +1,15 @@
 import React from 'react'
-import { Pokedex } from './domains/pokedex/Pokedex'
+import { BrowserRouter } from 'react-router-dom'
 
 import './global.scss'
+import { RoutesList } from './RoutesList'
 
 export const App: React.FC = () => {
   return (
     <>
-      <Pokedex />
+      <BrowserRouter>
+        <RoutesList />
+      </BrowserRouter>
     </>
   )
 }
