@@ -21,30 +21,22 @@ import {
   Container,
   Grid
 } from '@mui/material'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export const Pokedex: React.FC = () => {
   const [pokemons, setPokemons] = useState<PokemonListInterface[]>([])
   const [selectedPokemon, setSelectedPokemon] = useState<
     PokemonListInterface | undefined
   >(undefined)
-  const [selectedPokemonDetails, setSelectedPokemonDetails] = useState<
-    PokemonDetail | undefined
-  >(undefined)
+  const navigate = useNavigate()
 
   useEffect(() => {
     listPokemons().then(response => setPokemons(response.results))
   }, [])
 
-  useEffect(() => {
-    if (!selectedPokemon) return
-
-    axios
-    getPokemonDetails(selectedPokemon.name).then(response =>
-      setSelectedPokemonDetails(response)
-    )
-
-    return () => {}
-  }, [selectedPokemon])
+  function handleClick(pokemon: PokemonListInterface) {
+    navigate(`/pokemon/${pokemon.name}`)
+  }
 
   return (
     <div>
@@ -81,10 +73,7 @@ export const Pokedex: React.FC = () => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button
-                        size="small"
-                        onClick={() => setSelectedPokemon(pokemon)}
-                      >
+                      <Button size="small" onClick={() => handleClick(pokemon)}>
                         Saiba Mais!
                       </Button>
                     </CardActions>
@@ -93,17 +82,6 @@ export const Pokedex: React.FC = () => {
               </>
             ))}
           </Grid>
-
-          <h2>
-            Pokémon Selecionado:
-            {selectedPokemon
-              ? ` ${selectedPokemon.name}`
-              : ' Nenhum pokémon selecionado'}
-          </h2>
-
-          <div>
-            <h3>Detalhes: {JSON.stringify(selectedPokemonDetails)}</h3>
-          </div>
         </Box>
       </Container>
     </div>
