@@ -42,7 +42,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               {name}
             </Typography>
           </Toolbar>
@@ -52,18 +52,39 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
       <Container maxWidth="lg">
         <Box mt={2}>
           <img
+            width="100%"
+            height="auto"
             src={selectedPokemonDetails?.sprites.front_default}
             alt="Imagem do pokemon selecionado"
           />
-          <h2>Pokemon Selecionado: {name}</h2>
-          {/*selectedPokemon
-          ? ` ${selectedPokemon.name}`
-  : ' Nenhum pokémon selecionado'*/}
-          {JSON.stringify(
-            selectedPokemonDetails?.sprites.animated?.front_default,
-            undefined,
-            2
-          )}
+        </Box>
+        <Typography variant="h2">{selectedPokemonDetails?.name}</Typography>
+        {selectedPokemonDetails?.types.map(type => (
+          <Typography>{type.type.name}</Typography>
+        ))}
+
+        <Box display="flex">
+          <Typography>Espécie:</Typography>
+          <Typography>{selectedPokemonDetails?.species.name}</Typography>
+        </Box>
+
+        <Box display="flex">
+          <Typography>Altura:</Typography>
+          <Typography>{selectedPokemonDetails?.height}</Typography>
+        </Box>
+
+        <Box display="flex">
+          <Typography>Peso:</Typography>
+          <Typography>{selectedPokemonDetails?.weight}</Typography>
+        </Box>
+
+        <Box display="flex">
+          <Typography>Habilidades:</Typography>
+          <Typography>
+            {selectedPokemonDetails?.abilities.map(ability => (
+              <Typography>{ability.ability.name}</Typography>
+            ))}
+          </Typography>
         </Box>
       </Container>
     </>

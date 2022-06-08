@@ -1,7 +1,5 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { PokemonDetail } from '../pokemon/interfaces/PokemonDetail'
-import { getPokemonDetails } from '../pokemon/services/getPokemonDetails'
+
 import {
   listPokemons,
   PokemonListInterface
@@ -13,30 +11,18 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Container,
-  Grid
-} from '@mui/material'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Container, Grid } from '@mui/material'
+import { PokedexCard } from './components/PokedexCard'
 
 export const Pokedex: React.FC = () => {
   const [pokemons, setPokemons] = useState<PokemonListInterface[]>([])
   const [selectedPokemon, setSelectedPokemon] = useState<
     PokemonListInterface | undefined
   >(undefined)
-  const navigate = useNavigate()
 
   useEffect(() => {
     listPokemons().then(response => setPokemons(response.results))
   }, [])
-
-  function handleClick(pokemon: PokemonListInterface) {
-    navigate(`/pokemon/${pokemon.name}`)
-  }
 
   return (
     <div>
@@ -66,18 +52,7 @@ export const Pokedex: React.FC = () => {
             {pokemons.map(pokemon => (
               <>
                 <Grid item xs={6} lg={3}>
-                  <Card sx={{ minWidth: 275 }}>
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        {pokemon.name}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small" onClick={() => handleClick(pokemon)}>
-                        Saiba Mais!
-                      </Button>
-                    </CardActions>
-                  </Card>
+                  <PokedexCard pokemon={pokemon} />
                 </Grid>
               </>
             ))}
