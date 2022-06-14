@@ -13,9 +13,10 @@ import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Container, Grid } from '@mui/material'
 import { PokedexCard } from './components/PokedexCard'
+import { PokemonDetail } from '../pokemon/interfaces/PokemonDetail'
 
 export const Pokedex: React.FC = () => {
-  const [pokemons, setPokemons] = useState<PokemonListInterface[]>([])
+  const [pokemons, setPokemons] = useState<PokemonDetail[]>([])
   const [selectedPokemon, setSelectedPokemon] = useState<
     PokemonListInterface | undefined
   >(undefined)
