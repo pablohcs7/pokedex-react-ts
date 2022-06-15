@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import {
-  listPokemons,
-  PokemonListInterface
-} from '../pokemon/services/listPokemons'
+import { listPokemons } from '../pokemon/services/listPokemons'
 
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -13,17 +10,11 @@ import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Container, Grid } from '@mui/material'
 import { PokedexCard } from './components/PokedexCard'
-import { PokemonDetail } from '../pokemon/interfaces/PokemonDetail'
+
+import { useQuery } from 'react-query'
 
 export const Pokedex: React.FC = () => {
-  const [pokemons, setPokemons] = useState<PokemonDetail[]>([])
-  const [selectedPokemon, setSelectedPokemon] = useState<
-    PokemonListInterface | undefined
-  >(undefined)
-
-  useEffect(() => {
-    listPokemons().then(response => setPokemons(response.results))
-  }, [])
+  const { data } = useQuery(`listPokemons`, listPokemons)
 
   return (
     <div>
@@ -50,7 +41,7 @@ export const Pokedex: React.FC = () => {
         <Box mt={2}>
           <h2>Pokémons</h2>
           <Grid container spacing={2}>
-            {pokemons.map(pokemon => (
+            {data?.results.map(pokemon => (
               <>
                 <Grid item xs={6} lg={3}>
                   <PokedexCard pokemon={pokemon} />
