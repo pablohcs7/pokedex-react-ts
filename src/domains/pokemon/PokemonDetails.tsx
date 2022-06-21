@@ -15,10 +15,6 @@ import { useQuery } from 'react-query'
 
 interface PokemonDetailsProps {}
 
-interface PokemonQueryParams {
-  name: string
-}
-
 export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
   const { name } = useParams()
 
