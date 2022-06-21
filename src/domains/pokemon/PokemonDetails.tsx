@@ -7,20 +7,26 @@ import {
   Container
 } from '@mui/material'
 import React from 'react'
-import { PokemonDetail } from './interfaces/PokemonDetail'
-import MenuIcon from '@mui/icons-material/Menu'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getPokemonDetails } from './services/getPokemonDetails'
 import { useQuery } from 'react-query'
+import { setFirstLetterUppercase } from './services/setFirstLetterUppercase'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
 interface PokemonDetailsProps {}
 
 export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
+  const navigate = useNavigate()
+
   const { name } = useParams()
 
   const { data } = useQuery(`getPokemonDetails-${name}`, () =>
     getPokemonDetails(name)
   )
+
+  function goBack() {
+    navigate('/')
+  }
 
   const selectedPokemonDetails = data
 
@@ -30,16 +36,16 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
         <AppBar position="static">
           <Toolbar>
             <IconButton
+              onClick={goBack}
               size="large"
               edge="start"
-              color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
+              sx={{ mr: 2, color: 'white' }}
             >
-              <MenuIcon />
+              <ArrowBackIcon />
             </IconButton>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-              {name}
+              {setFirstLetterUppercase(name)}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -76,11 +82,9 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
 
         <Box display="flex">
           <Typography>Habilidades:</Typography>
-          <Typography>
-            {selectedPokemonDetails?.abilities.map((ability, index) => (
-              <Typography key={index}>{ability.ability.name}</Typography>
-            ))}
-          </Typography>
+          {selectedPokemonDetails?.abilities.map((ability, index) => (
+            <Typography key={index}>{ability.ability.name}</Typography>
+          ))}
         </Box>
       </Container>
     </>

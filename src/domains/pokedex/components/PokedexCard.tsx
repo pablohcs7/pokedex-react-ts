@@ -8,8 +8,6 @@ import {
   Chip,
   Typography
 } from '@mui/material'
-
-import { IconButtonProps } from '@mui/material/IconButton'
 import { PokemonDetail } from '../../pokemon/interfaces/PokemonDetail'
 import { setFirstLetterUppercase } from '../../pokemon/services/setFirstLetterUppercase'
 
@@ -45,9 +43,9 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
               {setFirstLetterUppercase(pokemon.name)}
             </Typography>
             <Typography component="div">
-              {pokemon.types.map(type => (
+              {pokemon.types.map((type, index) => (
                 <Chip
-                  key={pokemon.id}
+                  key={index}
                   label={setFirstLetterUppercase(type.type.name)}
                   sx={{ marginRight: 1 }}
                 />
