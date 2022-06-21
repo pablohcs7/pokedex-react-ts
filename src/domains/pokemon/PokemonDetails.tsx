@@ -6,27 +6,27 @@ import {
   Typography,
   Container
 } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { PokemonDetail } from './interfaces/PokemonDetail'
 import MenuIcon from '@mui/icons-material/Menu'
 import { useParams } from 'react-router-dom'
 import { getPokemonDetails } from './services/getPokemonDetails'
+import { useQuery } from 'react-query'
 
 interface PokemonDetailsProps {}
 
-export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
-  const [selectedPokemonDetails, setSelectedPokemonDetails] = useState<
-    PokemonDetail | undefined
-  >(undefined)
+interface PokemonQueryParams {
+  name: string
+}
 
+export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
   const { name } = useParams()
 
-  useEffect(() => {
-    if (!name) return
-    getPokemonDetails(name).then(response =>
-      setSelectedPokemonDetails(response)
-    )
-  }, [])
+  const { data } = useQuery(`getPokemonDetails-${name}`, () =>
+    getPokemonDetails(name)
+  )
+
+  const selectedPokemonDetails = data
 
   return (
     <>
@@ -59,8 +59,8 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
           />
         </Box>
         <Typography variant="h2">{selectedPokemonDetails?.name}</Typography>
-        {selectedPokemonDetails?.types.map(type => (
-          <Typography>{type.type.name}</Typography>
+        {selectedPokemonDetails?.types.map((type, index) => (
+          <Typography key={index}>{type.type.name}</Typography>
         ))}
 
         <Box display="flex">
@@ -81,8 +81,8 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
         <Box display="flex">
           <Typography>Habilidades:</Typography>
           <Typography>
-            {selectedPokemonDetails?.abilities.map(ability => (
-              <Typography>{ability.ability.name}</Typography>
+            {selectedPokemonDetails?.abilities.map((ability, index) => (
+              <Typography key={index}>{ability.ability.name}</Typography>
             ))}
           </Typography>
         </Box>

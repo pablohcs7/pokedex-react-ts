@@ -47,6 +47,7 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
             <Typography component="div">
               {pokemon.types.map(type => (
                 <Chip
+                  key={pokemon.id}
                   label={setFirstLetterUppercase(type.type.name)}
                   sx={{ marginRight: 1 }}
                 />
