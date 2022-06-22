@@ -6,8 +6,9 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import { Container, Grid } from '@mui/material'
+import { Button, Container, Grid } from '@mui/material'
 import { PokedexCard } from './components/PokedexCard'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 
 import { useQuery } from 'react-query'
 
@@ -22,6 +23,13 @@ export const Pokedex: React.FC = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Pokédex
             </Typography>
+            <Button
+              color="error"
+              variant="contained"
+              startIcon={<FavoriteIcon />}
+            >
+              Favoritos
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>
