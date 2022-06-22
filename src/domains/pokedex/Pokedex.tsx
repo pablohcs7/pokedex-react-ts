@@ -11,9 +11,16 @@ import { PokedexCard } from './components/PokedexCard'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
 import { useQuery } from 'react-query'
+import { useNavigate } from 'react-router-dom'
 
 export const Pokedex: React.FC = () => {
   const { data } = useQuery(`listPokemons`, listPokemons)
+
+  const navigate = useNavigate()
+
+  function handleClick() {
+    navigate('/favoritos')
+  }
 
   return (
     <div>
@@ -25,6 +32,7 @@ export const Pokedex: React.FC = () => {
             </Typography>
             <Button
               color="error"
+              onClick={handleClick}
               variant="contained"
               startIcon={<FavoriteIcon />}
             >

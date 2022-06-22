@@ -3,13 +3,16 @@ import { useNavigate } from 'react-router-dom'
 import {
   Card,
   CardActionArea,
+  CardActions,
   CardContent,
   CardMedia,
   Chip,
+  IconButton,
   Typography
 } from '@mui/material'
 import { PokemonDetail } from '../../pokemon/interfaces/PokemonDetail'
 import { setFirstLetterUppercase } from '../../pokemon/services/setFirstLetterUppercase'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 
 interface PokedexCardProps {
   pokemon: PokemonDetail
@@ -31,6 +34,14 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
   return (
     <>
       <Card sx={{ maxWidth: 345 }} onClick={handleClick}>
+        <CardActions
+          disableSpacing
+          sx={{ display: 'flex', justifyContent: 'end' }}
+        >
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon sx={{ ':hover': { color: 'red' } }} />
+          </IconButton>
+        </CardActions>
         <CardActionArea>
           <CardMedia
             component="img"
