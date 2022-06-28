@@ -50,40 +50,36 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
             alt={`${pokemon.name} image`}
             onClick={handleClick}
           />
-          <CardContent
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
-          >
+          <CardContent sx={{ display: 'flex', justifyContent: 'center' }}>
             <Typography component="div">
               <Typography gutterBottom variant="h5" component="div">
                 {setFirstLetterUppercase(pokemon.name)}
               </Typography>
-              <Typography component="div">
-                {pokemon.types.map((type, index) => (
-                  <Chip
-                    key={index}
-                    label={setFirstLetterUppercase(type.type.name)}
-                    sx={{ marginRight: 1 }}
-                  />
-                ))}
-              </Typography>
             </Typography>
-            <CardActions>
-              <IconButton
-                onClick={() =>
-                  isFavorite
-                    ? removePokemonFromFavorites()
-                    : addPokemonToFavorite()
-                }
-                aria-label="add to favorites"
-              >
-                <FavoriteIcon
-                  color={isFavorite ? 'error' : 'disabled'}
-                  sx={{ ':hover': { color: 'red' } }}
-                />
-              </IconButton>
-            </CardActions>
           </CardContent>
         </CardActionArea>
+        <CardActions sx={{ displat: 'flex', justifyContent: 'space-between' }}>
+          <Typography component="div">
+            {pokemon.types.map((type, index) => (
+              <Chip
+                key={index}
+                label={setFirstLetterUppercase(type.type.name)}
+                sx={{ marginRight: 1 }}
+              />
+            ))}
+          </Typography>
+          <IconButton
+            onClick={() =>
+              isFavorite ? removePokemonFromFavorites() : addPokemonToFavorite()
+            }
+            aria-label="add to favorites"
+          >
+            <FavoriteIcon
+              color={isFavorite ? 'error' : 'disabled'}
+              sx={{ ':hover': { color: 'red', transition: '0.3s' } }}
+            />
+          </IconButton>
+        </CardActions>
       </Card>
     </>
   )
