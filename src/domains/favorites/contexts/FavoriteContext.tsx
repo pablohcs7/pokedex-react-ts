@@ -1,18 +1,23 @@
-import React, { useState } from 'react'
+import React, { PropsWithChildren, useState } from 'react'
 import { PokemonDetail } from '../../pokemon/interfaces/PokemonDetail'
-import { PokemonDetails } from '../../pokemon/PokemonDetails'
 
 interface FavoriteContextProps {
   favorites: PokemonDetail[]
   setFavorites: React.Dispatch<React.SetStateAction<PokemonDetail[]>>
 }
 
-const FavoriteContext = React.createContext<FavoriteContextProps>({
+interface ChildrenInterface {
+  children?: any
+}
+
+export const FavoriteContext = React.createContext<FavoriteContextProps>({
   favorites: [],
   setFavorites: () => console.warn('setFavorites is not ready')
 })
 
-export const FavoriteProvider: React.FC<FavoriteContextProps> = () => {
+export const FavoriteProvider: React.FC<
+  PropsWithChildren<ChildrenInterface>
+> = ({ children }) => {
   const [favorites, setFavorites] = useState<PokemonDetail[]>([])
 
   return (
@@ -22,7 +27,9 @@ export const FavoriteProvider: React.FC<FavoriteContextProps> = () => {
           favorites,
           setFavorites
         }}
-      ></FavoriteContext.Provider>
+      >
+        {children}
+      </FavoriteContext.Provider>
     </div>
   )
 }

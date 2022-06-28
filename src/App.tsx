@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 import './global.scss'
 import { RoutesList } from './RoutesList'
+import { FavoriteProvider } from './domains/favorites/contexts/FavoriteContext'
 
 const queryClient = new QueryClient()
 
@@ -12,9 +13,11 @@ export const App: React.FC = () => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <RoutesList />
-        </BrowserRouter>
+        <FavoriteProvider>
+          <BrowserRouter>
+            <RoutesList />
+          </BrowserRouter>
+        </FavoriteProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>

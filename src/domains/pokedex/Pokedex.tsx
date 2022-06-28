@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { listPokemons } from '../pokemon/services/listPokemons'
 
@@ -12,8 +12,12 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+import { FavoriteContext } from '../favorites/contexts/FavoriteContext'
+import { PokemonDetail } from '../pokemon/interfaces/PokemonDetail'
 
 export const Pokedex: React.FC = () => {
+  const { favorites } = useContext(FavoriteContext)
+
   const { data } = useQuery(`listPokemons`, listPokemons)
 
   const navigate = useNavigate()

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   Card,
@@ -13,55 +13,75 @@ import {
 import { PokemonDetail } from '../../pokemon/interfaces/PokemonDetail'
 import { setFirstLetterUppercase } from '../../pokemon/services/setFirstLetterUppercase'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { FavoriteContext } from '../../favorites/contexts/FavoriteContext'
 
 interface PokedexCardProps {
   pokemon: PokemonDetail
 }
 
-// const Card = styled.section`
-//   padding: 4rem;
-//   border-radius: 0.5rem;
-//   background: papayawhip;
-// `
-
 export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
+  const { favorites, setFavorites } = useContext(FavoriteContext)
+
   const navigate = useNavigate()
 
   function handleClick() {
     navigate(`/pokemon/${pokemon.name}`)
   }
 
+  const addPokemonToFavorite = () => {
+    setFavorites([...favorites, pokemon])
+    console.log(favorites)
+  }
+
+  const removePokemonFromFavorites = () => {
+    setFavorites(favorites.filter(poke => poke.name !== pokemon.name))
+  }
+
+  const isFavorite = favorites.some(poke => poke.name === pokemon.name)
+
   return (
     <>
-      <Card sx={{ maxWidth: 345 }} onClick={handleClick}>
-        <CardActions
-          disableSpacing
-          sx={{ display: 'flex', justifyContent: 'end' }}
-        >
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon sx={{ ':hover': { color: 'red' } }} />
-          </IconButton>
-        </CardActions>
+      <Card sx={{ maxWidth: 345 }}>
         <CardActionArea>
           <CardMedia
             component="img"
             height="276"
             image={pokemon.sprites.front_default}
             alt={`${pokemon.name} image`}
+            onClick={handleClick}
           />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {setFirstLetterUppercase(pokemon.name)}
-            </Typography>
+          <CardContent
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
+          >
             <Typography component="div">
-              {pokemon.types.map((type, index) => (
-                <Chip
-                  key={index}
-                  label={setFirstLetterUppercase(type.type.name)}
-                  sx={{ marginRight: 1 }}
-                />
-              ))}
+              <Typography gutterBottom variant="h5" component="div">
+                {setFirstLetterUppercase(pokemon.name)}
+              </Typography>
+              <Typography component="div">
+                {pokemon.types.map((type, index) => (
+                  <Chip
+                    key={index}
+                    label={setFirstLetterUppercase(type.type.name)}
+                    sx={{ marginRight: 1 }}
+                  />
+                ))}
+              </Typography>
             </Typography>
+            <CardActions>
+              <IconButton
+                onClick={() =>
+                  isFavorite
+                    ? removePokemonFromFavorites()
+                    : addPokemonToFavorite()
+                }
+                aria-label="add to favorites"
+              >
+                <FavoriteIcon
+                  color={isFavorite ? 'error' : 'disabled'}
+                  sx={{ ':hover': { color: 'red' } }}
+                />
+              </IconButton>
+            </CardActions>
           </CardContent>
         </CardActionArea>
       </Card>
