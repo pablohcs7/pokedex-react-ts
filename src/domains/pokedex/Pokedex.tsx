@@ -6,7 +6,7 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import { Button, Container, Grid } from '@mui/material'
+import { Badge, Button, Container, Grid } from '@mui/material'
 import { PokedexCard } from './components/PokedexCard'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
@@ -26,6 +26,8 @@ export const Pokedex: React.FC = () => {
     navigate('/favoritos')
   }
 
+  const favoritesCount = favorites.length
+
   return (
     <div>
       <Box>
@@ -34,14 +36,16 @@ export const Pokedex: React.FC = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Pokédex
             </Typography>
-            <Button
-              color="error"
-              onClick={handleClick}
-              variant="contained"
-              startIcon={<FavoriteIcon />}
-            >
-              Favoritos
-            </Button>
+            <Badge badgeContent={favoritesCount} color="error">
+              <Button
+                color="error"
+                onClick={handleClick}
+                variant="contained"
+                startIcon={<FavoriteIcon />}
+              >
+                Favoritos
+              </Button>
+            </Badge>
           </Toolbar>
         </AppBar>
       </Box>
