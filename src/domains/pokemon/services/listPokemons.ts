@@ -16,7 +16,7 @@ interface ListPokemonsInterface {
 
 export async function listPokemons(): Promise<ListPokemonsInterface> {
   //para listar os pokemons da primeira geração acrescente ?limit=151 logo depois de pokemon na template string
-  const endpoint = `${import.meta.env.VITE_POKEAPI_URL}/pokemon`
+  const endpoint = `${import.meta.env.VITE_POKEAPI_URL}/pokemon?limit=151`
 
   const response = await axios.get<ListPokemonsInterface>(endpoint)
 

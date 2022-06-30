@@ -4,7 +4,6 @@ import {
   Card,
   CardActionArea,
   CardActions,
-  CardContent,
   CardMedia,
   Chip,
   IconButton,
@@ -14,6 +13,7 @@ import { PokemonDetail } from '../../pokemon/interfaces/PokemonDetail'
 import { setFirstLetterUppercase } from '../../pokemon/services/setFirstLetterUppercase'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { FavoriteContext } from '../../favorites/contexts/FavoriteContext'
+import { setBackgroundColor } from '../../pokemon/services/setBackgroundColor'
 
 interface PokedexCardProps {
   pokemon: PokemonDetail
@@ -30,7 +30,6 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
 
   const addPokemonToFavorite = () => {
     setFavorites([...favorites, pokemon])
-    console.log(favorites)
   }
 
   const removePokemonFromFavorites = () => {
@@ -41,25 +40,38 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
 
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card
+        sx={{
+          maxWidth: 345,
+          backgroundColor: `${setBackgroundColor(pokemon.types)}`
+        }}
+      >
         <CardActionArea>
           <CardMedia
             component="img"
             height="276"
-            image={pokemon.sprites.front_default}
+            image={pokemon.sprites.front_shiny}
             alt={`${pokemon.name} image`}
             onClick={handleClick}
           />
-          <CardContent sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography component="div">
-              <Typography gutterBottom variant="h5" component="div">
-                {setFirstLetterUppercase(pokemon.name)}
-              </Typography>
-            </Typography>
-          </CardContent>
         </CardActionArea>
-        <CardActions sx={{ displat: 'flex', justifyContent: 'space-between' }}>
-          <Typography component="div">
+        <CardActions
+          sx={{
+            display: 'grid',
+            backgroundColor: 'white',
+            justifyItems: 'center'
+          }}
+        >
+          <Typography gutterBottom variant="h5" component="div">
+            {setFirstLetterUppercase(pokemon.name)}
+          </Typography>
+          <Typography
+            component="div"
+            sx={{
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
             {pokemon.types.map((type, index) => (
               <Chip
                 key={index}
@@ -67,18 +79,20 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
                 sx={{ marginRight: 1 }}
               />
             ))}
+            <IconButton
+              onClick={() =>
+                isFavorite
+                  ? removePokemonFromFavorites()
+                  : addPokemonToFavorite()
+              }
+              aria-label="add to favorites"
+            >
+              <FavoriteIcon
+                color={isFavorite ? 'error' : 'disabled'}
+                sx={{ ':hover': { color: 'red', transition: '0.3s' } }}
+              />
+            </IconButton>
           </Typography>
-          <IconButton
-            onClick={() =>
-              isFavorite ? removePokemonFromFavorites() : addPokemonToFavorite()
-            }
-            aria-label="add to favorites"
-          >
-            <FavoriteIcon
-              color={isFavorite ? 'error' : 'disabled'}
-              sx={{ ':hover': { color: 'red', transition: '0.3s' } }}
-            />
-          </IconButton>
         </CardActions>
       </Card>
     </>
