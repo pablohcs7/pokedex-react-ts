@@ -13,7 +13,7 @@ export const FavoriteScreen: React.FC = () => {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" sx={{ backgroundColor: '#0075BE' }}>
           <Toolbar>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               Pokémons Favoritos

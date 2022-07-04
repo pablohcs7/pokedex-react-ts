@@ -30,10 +30,13 @@ export const Pokedex: React.FC = () => {
   return (
     <div>
       <Box>
-        <AppBar position="static">
+        <AppBar position="static" sx={{ backgroundColor: '#0075BE' }}>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Pokédex
+              <img
+                src="https://pokeapi.co/static/pokeapi_256.3fa72200.png"
+                alt="PokeApi icon"
+              />
             </Typography>
             <Badge badgeContent={favoritesCount} color="error">
               <Button

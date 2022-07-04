@@ -50,7 +50,7 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
           <CardMedia
             component="img"
             height="276"
-            image={pokemon.sprites.front_shiny}
+            image={pokemon.sprites.front_default}
             alt={`${pokemon.name} image`}
             onClick={handleClick}
           />

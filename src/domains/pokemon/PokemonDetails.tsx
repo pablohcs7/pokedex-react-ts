@@ -53,7 +53,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" sx={{ backgroundColor: '#0075BE' }}>
           <Toolbar>
             <IconButton
               onClick={goBack}
