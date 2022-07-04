@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
-import './global.scss'
 import { RoutesList } from './RoutesList'
 import { FavoriteProvider } from './domains/favorites/contexts/FavoriteContext'
 

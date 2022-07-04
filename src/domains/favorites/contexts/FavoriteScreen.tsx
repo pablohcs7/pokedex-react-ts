@@ -16,14 +16,13 @@ export const FavoriteScreen: React.FC = () => {
         <AppBar position="static" sx={{ backgroundColor: '#0075BE' }}>
           <Toolbar>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-              Pokémons Favoritos
+              Favorite Pokémons
             </Typography>
           </Toolbar>
         </AppBar>
       </Box>
       <Container maxWidth="lg">
         <Box mt={2}>
-          <h2>Pokémons</h2>
           <Grid container spacing={2}>
             {favorites?.map(pokemon => (
               <Grid key={pokemon.id} item xs={6} lg={3}>

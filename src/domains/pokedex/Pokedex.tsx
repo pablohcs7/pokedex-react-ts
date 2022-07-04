@@ -31,10 +31,10 @@ export const Pokedex: React.FC = () => {
     <div>
       <Box>
         <AppBar position="static" sx={{ backgroundColor: '#0075BE' }}>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="body1" component="div" sx={{ width: '100px' }}>
               <img
-                src="https://pokeapi.co/static/pokeapi_256.3fa72200.png"
+                src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi.svg?sanitize=true"
                 alt="PokeApi icon"
               />
             </Typography>

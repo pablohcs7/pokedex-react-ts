@@ -46,13 +46,19 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
           backgroundColor: `${setBackgroundColor(pokemon.types)}`
         }}
       >
-        <CardActionArea>
+        <CardActionArea onClick={handleClick} sx={{ display: 'flex' }}>
           <CardMedia
             component="img"
-            height="276"
+            height="100%"
             image={pokemon.sprites.front_default}
             alt={`${pokemon.name} image`}
-            onClick={handleClick}
+            sx={{ position: 'absolute', zIndex: 1 }}
+          />
+          <CardMedia
+            component="img"
+            height="100%"
+            image="src\domains\pokedex\components\assets\pokeball-icon.svg"
+            sx={{ opacity: '0.5' }}
           />
         </CardActionArea>
         <CardActions
@@ -63,22 +69,26 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
           }}
         >
           <Typography gutterBottom variant="h5" component="div">
-            {setFirstLetterUppercase(pokemon.name)}
+            {pokemon.id}. {setFirstLetterUppercase(pokemon.name)}
           </Typography>
           <Typography
             component="div"
             sx={{
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              width: '100%',
+              justifyContent: 'space-between'
             }}
           >
-            {pokemon.types.map((type, index) => (
-              <Chip
-                key={index}
-                label={setFirstLetterUppercase(type.type.name)}
-                sx={{ marginRight: 1 }}
-              />
-            ))}
+            <Typography component="div">
+              {pokemon.types.map((type, index) => (
+                <Chip
+                  key={index}
+                  label={setFirstLetterUppercase(type.type.name)}
+                  sx={{ marginRight: 1 }}
+                />
+              ))}
+            </Typography>
             <IconButton
               onClick={() =>
                 isFavorite

@@ -51,6 +51,9 @@ export function setBackgroundColor(types: Type[]) {
     case 'water':
       backgroundColorBasedInType = '#6e8ac7'
       break
+    case 'fairy':
+      backgroundColorBasedInType = '#f7cbdf'
+      break
   }
 
   return backgroundColorBasedInType
