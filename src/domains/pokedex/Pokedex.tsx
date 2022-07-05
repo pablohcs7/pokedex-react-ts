@@ -55,7 +55,7 @@ export const Pokedex: React.FC = () => {
       <Container maxWidth="lg">
         <Box mt={2}>
           <h2>Pokémons</h2>
-          <Grid container spacing={2}>
+          <Grid container spacing={6}>
             {data?.results.map(pokemon => (
               <Grid key={pokemon.id} item xs={6} lg={3}>
                 <PokedexCard pokemon={pokemon} />
