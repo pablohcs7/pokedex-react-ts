@@ -21,17 +21,29 @@ export const FavoriteScreen: React.FC = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      <Container maxWidth="lg">
-        <Box mt={2}>
-          <Grid container spacing={2}>
-            {favorites?.map(pokemon => (
-              <Grid key={pokemon.id} item xs={6} lg={3}>
-                <PokedexCard pokemon={pokemon} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Container>
+      <Typography
+        component="div"
+        sx={{
+          backgroundImage:
+            'url("src/domains/pokedex/components/assets/pokeball-background.svg")',
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          minHeight: '100vh'
+        }}
+      >
+        <Container maxWidth="lg">
+          <Box mt={2}>
+            <Grid container spacing={2}>
+              {favorites?.map(pokemon => (
+                <Grid key={pokemon.id} item xs={6} lg={3}>
+                  <PokedexCard pokemon={pokemon} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Container>
+      </Typography>
     </div>
   )
 }

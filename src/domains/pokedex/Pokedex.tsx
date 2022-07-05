@@ -13,6 +13,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { FavoriteContext } from '../favorites/contexts/FavoriteContext'
+import { url } from 'inspector'
 
 export const Pokedex: React.FC = () => {
   const { favorites } = useContext(FavoriteContext)
@@ -51,19 +52,29 @@ export const Pokedex: React.FC = () => {
           </Toolbar>
         </AppBar>
       </Box>
-
-      <Container maxWidth="lg">
-        <Box mt={2}>
+      <Typography
+        component="div"
+        sx={{
+          backgroundImage:
+            'url("src/domains/pokedex/components/assets/pokeball-background.svg")',
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center'
+        }}
+      >
+        <Container maxWidth="lg">
           <h2>Pokémons</h2>
-          <Grid container spacing={6}>
-            {data?.results.map(pokemon => (
-              <Grid key={pokemon.id} item xs={6} lg={3}>
-                <PokedexCard pokemon={pokemon} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Container>
+          <Box mt={2}>
+            <Grid container spacing={6}>
+              {data?.results.map(pokemon => (
+                <Grid key={pokemon.id} item xs={6} lg={3}>
+                  <PokedexCard pokemon={pokemon} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Container>
+      </Typography>
     </div>
   )
 }
