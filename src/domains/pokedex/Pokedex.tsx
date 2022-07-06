@@ -13,7 +13,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { FavoriteContext } from '../favorites/contexts/FavoriteContext'
-import { url } from 'inspector'
+
 
 export const Pokedex: React.FC = () => {
   const { favorites } = useContext(FavoriteContext)
