@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 
 import { listPokemons } from '../pokemon/services/listPokemons'
 
@@ -6,7 +6,7 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import { Badge, Button, Container, Grid } from '@mui/material'
+import { Badge, Button, Container, Grid, Pagination } from '@mui/material'
 import { PokedexCard } from './components/PokedexCard'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 
@@ -14,8 +14,9 @@ import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { FavoriteContext } from '../favorites/contexts/FavoriteContext'
 
-
 export const Pokedex: React.FC = () => {
+  const [pageNumber, setPageNumber] = useState(0)
+
   const { favorites } = useContext(FavoriteContext)
 
   const { data } = useQuery(`listPokemons`, listPokemons)
@@ -24,6 +25,22 @@ export const Pokedex: React.FC = () => {
 
   function handleClick() {
     navigate('/favoritos')
+  }
+
+  const totalPokemons: number = Number(data?.results.length)
+
+  const pokemonsPerPage = 12
+  const pagesVisited = pageNumber * pokemonsPerPage
+  const displayPokemons = data?.results
+    .slice(pagesVisited, pagesVisited + pokemonsPerPage)
+    .map(pokemon => (
+      <Grid key={pokemon.id} item xs={6} lg={3}>
+        <PokedexCard pokemon={pokemon} />
+      </Grid>
+    ))
+
+  const handlePage = (event: ChangeEvent<unknown>, page: number) => {
+    setPageNumber(page - 1)
   }
 
   const favoritesCount = favorites.length
@@ -66,13 +83,23 @@ export const Pokedex: React.FC = () => {
           <h2>Pokémons</h2>
           <Box mt={2}>
             <Grid container spacing={6}>
-              {data?.results.map(pokemon => (
-                <Grid key={pokemon.id} item xs={6} lg={3}>
-                  <PokedexCard pokemon={pokemon} />
-                </Grid>
-              ))}
+              {displayPokemons}
             </Grid>
           </Box>
+          <Typography
+            component="div"
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '1rem'
+            }}
+          >
+            <Pagination
+              count={Math.ceil(totalPokemons / pokemonsPerPage)}
+              onChange={handlePage}
+              defaultPage={1}
+            />
+          </Typography>
         </Container>
       </Typography>
     </div>
