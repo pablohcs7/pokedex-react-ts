@@ -5,54 +5,75 @@ export function setBackgroundColor(types: Type[]) {
 
   let backgroundColorBasedInType = ''
 
+  const colours = {
+    normal: '#A8A77A',
+    fire: '#EE8130',
+    water: '#6390F0',
+    electric: '#F7D02C',
+    grass: '#7AC74C',
+    ice: '#96D9D6',
+    fighting: '#C22E28',
+    poison: '#A33EA1',
+    ground: '#E2BF65',
+    flying: '#A98FF3',
+    psychic: '#F95587',
+    bug: '#A6B91A',
+    rock: '#B6A136',
+    ghost: '#735797',
+    dragon: '#6F35FC',
+    dark: '#705746',
+    steel: '#B7B7CE',
+    fairy: '#D685AD'
+  }
+
   switch (mainType) {
     case 'bug':
-      backgroundColorBasedInType = '#abba38'
+      backgroundColorBasedInType = colours.bug
       break
     case 'dragon':
-      backgroundColorBasedInType = '#6257a7'
+      backgroundColorBasedInType = colours.dragon
       break
     case 'electric':
-      backgroundColorBasedInType = '#f7d332'
+      backgroundColorBasedInType = colours.electric
       break
     case 'fighting':
-      backgroundColorBasedInType = '#c4312b'
+      backgroundColorBasedInType = colours.fighting
       break
     case 'fire':
-      backgroundColorBasedInType = '#f17f2d'
+      backgroundColorBasedInType = colours.fire
       break
     case 'flying':
-      backgroundColorBasedInType = '#9e8fc5'
+      backgroundColorBasedInType = colours.flying
       break
     case 'ghost':
-      backgroundColorBasedInType = '#70599b'
+      backgroundColorBasedInType = colours.ghost
       break
     case 'grass':
-      backgroundColorBasedInType = '#78c351'
+      backgroundColorBasedInType = colours.grass
       break
     case 'ground':
-      backgroundColorBasedInType = '#e0c166'
+      backgroundColorBasedInType = colours.ground
       break
     case 'ice':
-      backgroundColorBasedInType = '#99d7d5'
+      backgroundColorBasedInType = colours.ice
       break
     case 'normal':
-      backgroundColorBasedInType = '#adab7a'
+      backgroundColorBasedInType = colours.normal
       break
     case 'poison':
-      backgroundColorBasedInType = '#9f4299'
+      backgroundColorBasedInType = colours.poison
       break
     case 'psychic':
-      backgroundColorBasedInType = '#f15888'
+      backgroundColorBasedInType = colours.psychic
       break
     case 'rock':
-      backgroundColorBasedInType = '#b9a239'
+      backgroundColorBasedInType = colours.rock
       break
     case 'water':
-      backgroundColorBasedInType = '#6e8ac7'
+      backgroundColorBasedInType = colours.water
       break
     case 'fairy':
-      backgroundColorBasedInType = '#f7cbdf'
+      backgroundColorBasedInType = colours.fairy
       break
   }
 
