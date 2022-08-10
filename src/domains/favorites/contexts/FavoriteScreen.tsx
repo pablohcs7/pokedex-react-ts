@@ -2,22 +2,50 @@ import React, { useContext } from 'react'
 
 import Box from '@mui/material/Box'
 
-import { AppBar, Container, Grid, Toolbar, Typography } from '@mui/material'
+import {
+  AppBar,
+  Container,
+  Grid,
+  IconButton,
+  Toolbar,
+  Typography
+} from '@mui/material'
+
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 
 import { FavoriteContext } from './FavoriteContext'
 import { PokedexCard } from '../../pokedex/components/PokedexCard'
+import { useNavigate } from 'react-router-dom'
 
 export const FavoriteScreen: React.FC = () => {
   const { favorites } = useContext(FavoriteContext)
+  const navigate = useNavigate()
+
+  function goBack() {
+    navigate('/')
+  }
 
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: '#F2B807' }}>
-          <Toolbar>
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-              Favorite Pokémons
-            </Typography>
+          <Toolbar sx={{ justifyContent: 'space-between' }}>
+            <IconButton
+              onClick={goBack}
+              size="large"
+              edge="start"
+              aria-label="menu"
+              sx={{ color: 'white' }}
+            >
+              <ArrowBackIcon />
+            </IconButton>
+            <Typography
+              component="img"
+              src="./src/domains/assets/pokemon-logo.png"
+              sx={{ width: '100px' }}
+            />
+            <FavoriteIcon sx={{ opacity: '0' }} />
           </Toolbar>
         </AppBar>
       </Box>

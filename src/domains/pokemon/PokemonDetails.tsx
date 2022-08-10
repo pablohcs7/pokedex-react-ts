@@ -10,7 +10,6 @@ import React, { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getPokemonDetails } from './services/getPokemonDetails'
 import { useQuery } from 'react-query'
-import { setFirstLetterUppercase } from './services/setFirstLetterUppercase'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { FavoriteContext } from '../favorites/contexts/FavoriteContext'
 
