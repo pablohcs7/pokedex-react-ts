@@ -42,19 +42,24 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
     if (!selectedPokemonDetails) return
 
     setFavorites(
-      favorites.filter(poke => poke.name !== selectedPokemonDetails.name)
+      favorites.filter((poke) => poke.name !== selectedPokemonDetails.name)
     )
   }
 
   const isFavorite = favorites.some(
-    poke => poke.name === selectedPokemonDetails?.name
+    (poke) => poke.name === selectedPokemonDetails?.name
   )
 
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: '#0075BE' }}>
-          <Toolbar>
+        <AppBar
+          position="static"
+          sx={{
+            backgroundColor: '#F2B807'
+          }}
+        >
+          <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <IconButton
               onClick={goBack}
               size="large"
@@ -64,9 +69,11 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             >
               <ArrowBackIcon />
             </IconButton>
-            <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-              {setFirstLetterUppercase(name)}
-            </Typography>
+            <Typography
+              component="img"
+              src="../src/domains/assets/pokemon-logo.png"
+              sx={{ width: '100px' }}
+            />
             <IconButton
               onClick={() =>
                 isFavorite
@@ -77,7 +84,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             >
               <FavoriteIcon
                 color={isFavorite ? 'error' : 'disabled'}
-                sx={{ ':hover': { color: 'red', transition: '0.3s' } }}
+                sx={{ ':hover': { color: '#D93E30', transition: '0.3s' } }}
               />
             </IconButton>
           </Toolbar>

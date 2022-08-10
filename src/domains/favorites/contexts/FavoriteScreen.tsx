@@ -13,7 +13,7 @@ export const FavoriteScreen: React.FC = () => {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: '#0075BE' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#F2B807' }}>
           <Toolbar>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
               Favorite Pokémons
@@ -35,7 +35,7 @@ export const FavoriteScreen: React.FC = () => {
         <Container maxWidth="lg">
           <Box mt={2}>
             <Grid container spacing={2}>
-              {favorites?.map(pokemon => (
+              {favorites?.map((pokemon) => (
                 <Grid key={pokemon.id} item xs={6} lg={3}>
                   <PokedexCard pokemon={pokemon} />
                 </Grid>

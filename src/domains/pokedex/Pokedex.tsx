@@ -33,7 +33,7 @@ export const Pokedex: React.FC = () => {
   const pagesVisited = pageNumber * pokemonsPerPage
   const displayPokemons = data?.results
     .slice(pagesVisited, pagesVisited + pokemonsPerPage)
-    .map(pokemon => (
+    .map((pokemon) => (
       <Grid key={pokemon.id} item xs={6} lg={3}>
         <PokedexCard pokemon={pokemon} />
       </Grid>
@@ -48,19 +48,21 @@ export const Pokedex: React.FC = () => {
   return (
     <div>
       <Box>
-        <AppBar position="static" sx={{ backgroundColor: '#0075BE' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#F2B807' }}>
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="body1" component="div" sx={{ width: '100px' }}>
-              <img
-                src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi.svg?sanitize=true"
-                alt="PokeApi icon"
-              />
-            </Typography>
+            <Typography
+              component="img"
+              src="./src/domains/assets/pokemon-logo.png"
+              sx={{ width: '100px' }}
+            ></Typography>
             <Badge badgeContent={favoritesCount} color="error">
               <Button
-                color="error"
                 onClick={handleClick}
                 variant="contained"
+                sx={{
+                  backgroundColor: '#D93E30',
+                  ':hover': { backgroundColor: '#DC4E41' }
+                }}
                 startIcon={<FavoriteIcon />}
               >
                 Favoritos
