@@ -5,7 +5,8 @@ import {
   IconButton,
   Typography,
   Container,
-  Chip
+  Chip,
+  Divider
 } from '@mui/material'
 import React, { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -16,6 +17,7 @@ import { FavoriteContext } from '../favorites/contexts/FavoriteContext'
 
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { setFirstLetterUppercase } from './services/setFirstLetterUppercase'
+import { setBackgroundColor } from './services/setBackgroundColor'
 
 interface PokemonDetailsProps {}
 
@@ -52,7 +54,13 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
   )
 
   return (
-    <>
+    <Typography
+      component="div"
+      sx={{
+        minHeight: '100vh',
+        backgroundColor: `${setBackgroundColor(selectedPokemonDetails?.types)}`
+      }}
+    >
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           position="static"
@@ -102,48 +110,83 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
           }}
         >
           <Typography variant="h3">
-            {setFirstLetterUppercase(selectedPokemonDetails?.name)}
+            {`#${selectedPokemonDetails?.id}. ${setFirstLetterUppercase(
+              selectedPokemonDetails?.name
+            )}`}
           </Typography>
-          <Typography>
+
+          <Box sx={{ mt: '0.5rem' }}>
             {selectedPokemonDetails?.types.map((type, index) => (
               <Chip
                 key={index}
                 label={setFirstLetterUppercase(type.type.name)}
-                sx={{ marginRight: 1 }}
+                sx={{
+                  marginRight: 1,
+                  boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.40)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.5)'
+                }}
               />
             ))}
-          </Typography>
-          <img
-            width="100%"
-            height="auto"
+          </Box>
+
+          <Typography
+            component="img"
             src={selectedPokemonDetails?.sprites.front_default}
             alt="Imagem do pokemon selecionado"
+            sx={{ width: '70%' }}
           />
-          <Typography></Typography>
         </Box>
 
-        <Box display="flex">
-          <Typography>Espécie:</Typography>
-          <Typography>{selectedPokemonDetails?.species.name}</Typography>
-        </Box>
+        <Divider variant="middle" sx={{ mb: '4rem', backgroundColor: '' }} />
 
-        <Box display="flex">
-          <Typography>Altura:</Typography>
-          <Typography>{selectedPokemonDetails?.height}</Typography>
-        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            borderRadius: '10px',
+            boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
+            padding: '1rem',
+            backgroundColor: 'white'
+          }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
+              borderRadius: '10px',
+              padding: '1rem',
+              gap: '0.3rem',
+              alignItems: 'center'
+            }}
+          >
+            <Typography variant="h5">Abilities</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                gap: '1rem',
+                maxWidth: '70%'
+              }}
+            >
+              {selectedPokemonDetails?.abilities.map((ability, index) => (
+                <Typography key={index}>{ability.ability.name}</Typography>
+              ))}
+            </Box>
+          </Box>
 
-        <Box display="flex">
-          <Typography>Peso:</Typography>
-          <Typography>{selectedPokemonDetails?.weight}</Typography>
-        </Box>
+          <Box display="flex">
+            <Typography>Altura:</Typography>
+            <Typography>{selectedPokemonDetails?.height}</Typography>
+          </Box>
 
-        <Box display="flex">
-          <Typography>Habilidades:</Typography>
-          {selectedPokemonDetails?.abilities.map((ability, index) => (
-            <Typography key={index}>{ability.ability.name}</Typography>
-          ))}
+          <Box display="flex">
+            <Typography>Peso:</Typography>
+            <Typography>{selectedPokemonDetails?.weight}</Typography>
+          </Box>
         </Box>
       </Container>
-    </>
+    </Typography>
   )
 }
