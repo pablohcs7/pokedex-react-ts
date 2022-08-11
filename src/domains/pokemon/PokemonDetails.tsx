@@ -4,7 +4,8 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Container
+  Container,
+  Chip
 } from '@mui/material'
 import React, { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -14,6 +15,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { FavoriteContext } from '../favorites/contexts/FavoriteContext'
 
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { setFirstLetterUppercase } from './services/setFirstLetterUppercase'
 
 interface PokemonDetailsProps {}
 
@@ -91,18 +93,34 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
       </Box>
 
       <Container maxWidth="lg">
-        <Box mt={2}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            paddingTop: '2rem'
+          }}
+        >
+          <Typography variant="h3">
+            {setFirstLetterUppercase(selectedPokemonDetails?.name)}
+          </Typography>
+          <Typography>
+            {selectedPokemonDetails?.types.map((type, index) => (
+              <Chip
+                key={index}
+                label={setFirstLetterUppercase(type.type.name)}
+                sx={{ marginRight: 1 }}
+              />
+            ))}
+          </Typography>
           <img
             width="100%"
             height="auto"
             src={selectedPokemonDetails?.sprites.front_default}
             alt="Imagem do pokemon selecionado"
           />
+          <Typography></Typography>
         </Box>
-        <Typography variant="h2">{selectedPokemonDetails?.name}</Typography>
-        {selectedPokemonDetails?.types.map((type, index) => (
-          <Typography key={index}>{type.type.name}</Typography>
-        ))}
 
         <Box display="flex">
           <Typography>Espécie:</Typography>
