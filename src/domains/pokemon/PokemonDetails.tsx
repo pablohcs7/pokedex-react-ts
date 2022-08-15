@@ -131,13 +131,20 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
 
           <Typography
             component="img"
-            src={selectedPokemonDetails?.sprites.front_default}
+            src={
+              selectedPokemonDetails?.sprites.versions?.['generation-v'][
+                'black-white'
+              ].animated?.front_default
+            }
             alt="Imagem do pokemon selecionado"
-            sx={{ width: '70%' }}
+            sx={{ width: '175px', mt: '2rem' }}
           />
         </Box>
 
-        <Divider variant="middle" sx={{ mb: '4rem', backgroundColor: '' }} />
+        <Divider
+          variant="middle"
+          sx={{ mb: '4rem', mt: '4rem', backgroundColor: '' }}
+        />
 
         <Box
           sx={{
@@ -147,7 +154,8 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             borderRadius: '10px',
             boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
             padding: '1rem',
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            gap: '1.5rem'
           }}
         >
           <Box
@@ -162,28 +170,53 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
               alignItems: 'center'
             }}
           >
-            <Typography variant="h5">Abilities</Typography>
+            <Typography sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+              SKILLS
+            </Typography>
             <Box
               sx={{
                 display: 'flex',
-                gap: '1rem',
-                maxWidth: '70%'
+                gap: '1rem'
               }}
             >
               {selectedPokemonDetails?.abilities.map((ability, index) => (
-                <Typography key={index}>{ability.ability.name}</Typography>
+                <Typography key={index}>
+                  {setFirstLetterUppercase(ability.ability.name)}
+                </Typography>
               ))}
             </Box>
           </Box>
 
-          <Box display="flex">
-            <Typography>Altura:</Typography>
-            <Typography>{selectedPokemonDetails?.height}</Typography>
-          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
+              borderRadius: '10px',
+              padding: '1rem',
+              gap: '0.3rem',
+              alignItems: 'center'
+            }}
+          >
+            <Typography sx={{ fontSize: '2rem', fontWeight: 'bold' }}>
+              BASE STATS
+            </Typography>
 
-          <Box display="flex">
-            <Typography>Peso:</Typography>
-            <Typography>{selectedPokemonDetails?.weight}</Typography>
+            <Box display="flex">
+              <Typography>Altura:</Typography>
+              <Typography>{selectedPokemonDetails?.height}</Typography>
+            </Box>
+
+            <Box display="flex">
+              <Typography>Altura:</Typography>
+              <Typography>{selectedPokemonDetails?.height}</Typography>
+            </Box>
+
+            <Box display="flex">
+              <Typography>Peso:</Typography>
+              <Typography>{selectedPokemonDetails?.weight}</Typography>
+            </Box>
           </Box>
         </Box>
       </Container>

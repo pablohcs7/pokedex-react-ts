@@ -33,10 +33,10 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
   }
 
   const removePokemonFromFavorites = () => {
-    setFavorites(favorites.filter(poke => poke.name !== pokemon.name))
+    setFavorites(favorites.filter((poke) => poke.name !== pokemon.name))
   }
 
-  const isFavorite = favorites.some(poke => poke.name === pokemon.name)
+  const isFavorite = favorites.some((poke) => poke.name === pokemon.name)
 
   return (
     <>
@@ -46,13 +46,18 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
           backgroundColor: `${setBackgroundColor(pokemon.types)}`
         }}
       >
-        <CardActionArea onClick={handleClick} sx={{ display: 'flex' }}>
+        <CardActionArea
+          onClick={handleClick}
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
           <CardMedia
             component="img"
-            height="100%"
-            image={pokemon.sprites.front_default}
+            image={
+              pokemon.sprites.versions?.['generation-v']['black-white'].animated
+                ?.front_default
+            }
             alt={`${pokemon.name} image`}
-            sx={{ position: 'absolute', zIndex: 1 }}
+            sx={{ position: 'absolute', zIndex: 1, width: '175px' }}
           />
           <CardMedia
             component="img"
