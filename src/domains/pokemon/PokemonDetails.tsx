@@ -6,7 +6,9 @@ import {
   Typography,
   Container,
   Chip,
-  Divider
+  Divider,
+  LinearProgress,
+  CircularProgress
 } from '@mui/material'
 import React, { useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -58,7 +60,8 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
       component="div"
       sx={{
         minHeight: '100vh',
-        backgroundColor: `${setBackgroundColor(selectedPokemonDetails?.types)}`
+        backgroundColor: `${setBackgroundColor(selectedPokemonDetails?.types)}`,
+        paddingBottom: '2rem'
       }}
     >
       <Box sx={{ flexGrow: 1 }}>
@@ -203,19 +206,171 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
               BASE STATS
             </Typography>
 
-            <Box display="flex">
-              <Typography>Altura:</Typography>
-              <Typography>{selectedPokemonDetails?.height}</Typography>
-            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+                gap: '4rem',
+                alignItems: 'center'
+              }}
+            >
+              <Box
+                display="flex"
+                sx={{ alignItems: 'center', gap: '0.5rem', minWidth: '100%' }}
+              >
+                <Typography>
+                  <b>HP:</b>
+                </Typography>
 
-            <Box display="flex">
-              <Typography>Altura:</Typography>
-              <Typography>{selectedPokemonDetails?.height}</Typography>
-            </Box>
+                <LinearProgress
+                  variant="determinate"
+                  value={selectedPokemonDetails?.stats[1].base_stat}
+                  color="error"
+                  sx={{
+                    width: '100%',
+                    height: '0.5rem',
+                    borderRadius: '10px'
+                  }}
+                />
 
-            <Box display="flex">
-              <Typography>Peso:</Typography>
-              <Typography>{selectedPokemonDetails?.weight}</Typography>
+                <Typography>
+                  <b>{selectedPokemonDetails?.stats[1].base_stat}</b>
+                </Typography>
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  width: '70%'
+                }}
+              >
+                <Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      width: '7rem',
+                      boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
+                      borderRadius: '10px',
+                      alignItems: 'center',
+                      padding: '0.5rem',
+                      mb: '1rem'
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <CircularProgress
+                        variant="determinate"
+                        color="secondary"
+                        value={100}
+                      />
+                      <Typography sx={{ position: 'absolute' }}>
+                        <b> {selectedPokemonDetails?.stats[2].base_stat}</b>
+                      </Typography>
+                    </Box>
+                    <Typography>Attack</Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      width: '7rem',
+                      boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
+                      borderRadius: '10px',
+                      alignItems: 'center',
+                      padding: '0.5rem'
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <CircularProgress
+                        variant="determinate"
+                        color="primary"
+                        value={100}
+                      />
+                      <Typography sx={{ position: 'absolute' }}>
+                        <b> {selectedPokemonDetails?.stats[3].base_stat}</b>
+                      </Typography>
+                    </Box>
+                    <Typography>Defense</Typography>
+                  </Box>
+                </Box>
+
+                <Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      width: '7rem',
+                      boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
+                      borderRadius: '10px',
+                      alignItems: 'center',
+                      padding: '0.5rem',
+                      mb: '1rem'
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <CircularProgress
+                        variant="determinate"
+                        color="warning"
+                        value={100}
+                      />
+                      <Typography sx={{ position: 'absolute' }}>
+                        <b> {selectedPokemonDetails?.stats[4].base_stat}</b>
+                      </Typography>
+                    </Box>
+                    <Typography>SP Attack</Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      width: '7rem',
+                      boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
+                      borderRadius: '10px',
+                      alignItems: 'center',
+                      padding: '0.5rem'
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <CircularProgress
+                        variant="determinate"
+                        color="success"
+                        value={100}
+                      />
+                      <Typography sx={{ position: 'absolute' }}>
+                        <b> {selectedPokemonDetails?.stats[5].base_stat}</b>
+                      </Typography>
+                    </Box>
+                    <Typography>SP Defense</Typography>
+                  </Box>
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Box>
