@@ -158,7 +158,8 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             boxShadow: '5px 5px 20px -6px rgba(0,0,0,0.65)',
             padding: '1rem',
             backgroundColor: 'white',
-            gap: '1.5rem'
+            gap: '1.5rem',
+            width: '100%'
           }}
         >
           <Box
@@ -212,7 +213,8 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
                 flexDirection: 'column',
                 width: '100%',
                 gap: '4rem',
-                alignItems: 'center'
+                alignItems: 'center',
+                maxWidth: '30rem'
               }}
             >
               <Box

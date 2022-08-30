@@ -59,6 +59,7 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
             alt={`${pokemon.name} image`}
             sx={{ position: 'absolute', zIndex: 1, width: '175px' }}
           />
+
           <CardMedia
             component="img"
             height="100%"
