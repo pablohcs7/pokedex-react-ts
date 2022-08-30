@@ -13,7 +13,7 @@ export const App: React.FC = () => {
     <>
       <QueryClientProvider client={queryClient}>
         <FavoriteProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/">
             <RoutesList />
           </BrowserRouter>
         </FavoriteProvider>
