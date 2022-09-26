@@ -83,7 +83,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             </IconButton>
             <Typography
               component="img"
-              src="../src/domains/assets/pokemon-logo.png"
+              src="https://raw.githubusercontent.com/pablohcs7/pokedex-react-ts/main/src/domains/assets/pokemon-logo.png"
               sx={{ width: '100px' }}
             />
             <IconButton

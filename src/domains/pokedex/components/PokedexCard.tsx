@@ -63,7 +63,7 @@ export const PokedexCard: React.FC<PokedexCardProps> = ({ pokemon }) => {
           <CardMedia
             component="img"
             height="100%"
-            image="src\domains\pokedex\components\assets\pokeball-icon.svg"
+            image="https://raw.githubusercontent.com/pablohcs7/pokedex-react-ts/0d9c1b83d0b29f79e83ed3ae0d6207a59b1611f2/src/domains/pokedex/components/assets/pokeball-icon.svg"
             sx={{ opacity: '0.5' }}
           />
         </CardActionArea>

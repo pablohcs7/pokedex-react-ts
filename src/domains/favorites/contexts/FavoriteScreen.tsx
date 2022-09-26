@@ -42,7 +42,7 @@ export const FavoriteScreen: React.FC = () => {
             </IconButton>
             <Typography
               component="img"
-              src="./src/domains/assets/pokemon-logo.png"
+              src="https://raw.githubusercontent.com/pablohcs7/pokedex-react-ts/main/src/domains/assets/pokemon-logo.png"
               sx={{ width: '100px' }}
             />
             <FavoriteIcon sx={{ opacity: '0' }} />
@@ -53,7 +53,7 @@ export const FavoriteScreen: React.FC = () => {
         component="div"
         sx={{
           backgroundImage:
-            'url("src/domains/pokedex/components/assets/pokeball-background.svg")',
+            'url("https://raw.githubusercontent.com/pablohcs7/pokedex-react-ts/0d9c1b83d0b29f79e83ed3ae0d6207a59b1611f2/src/domains/pokedex/components/assets/pokeball-background.svg")',
           backgroundAttachment: 'fixed',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
