@@ -81,7 +81,7 @@ export const Pokedex: React.FC = () => {
           backgroundPosition: 'center'
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ mb: '1rem' }}>
           <h2>Pokémons</h2>
           <Box mt={2}>
             <Grid container spacing={6}>
@@ -95,15 +95,20 @@ export const Pokedex: React.FC = () => {
               justifyContent: 'center',
               marginTop: '1rem'
             }}
-          >
-            <Pagination
-              count={Math.ceil(totalPokemons / pokemonsPerPage)}
-              onChange={handlePage}
-              defaultPage={1}
-            />
-          </Typography>
+          ></Typography>
         </Container>
       </Typography>
+      <Pagination
+        count={Math.ceil(totalPokemons / pokemonsPerPage)}
+        onChange={handlePage}
+        defaultPage={1}
+        sx={{
+          mb: '2rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      />
     </div>
   )
 }
