@@ -27,7 +27,7 @@ export const FavoriteScreen: React.FC = () => {
   }
 
   return (
-    <div>
+    <Box sx={{ backgroundColor: '#d9d9d9' }}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: '#F2B807' }}>
           <Toolbar sx={{ justifyContent: 'space-between' }}>
@@ -72,6 +72,6 @@ export const FavoriteScreen: React.FC = () => {
           </Box>
         </Container>
       </Typography>
-    </div>
+    </Box>
   )
 }

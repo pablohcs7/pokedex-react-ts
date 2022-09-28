@@ -46,7 +46,7 @@ export const Pokedex: React.FC = () => {
   const favoritesCount = favorites.length
 
   return (
-    <div>
+    <Box sx={{ backgroundColor: '#d9d9d9' }}>
       <Box>
         <AppBar position="static" sx={{ backgroundColor: '#F2B807' }}>
           <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -109,6 +109,6 @@ export const Pokedex: React.FC = () => {
           justifyContent: 'center'
         }}
       />
-    </div>
+    </Box>
   )
 }

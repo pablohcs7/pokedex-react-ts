@@ -180,7 +180,9 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
             <Box
               sx={{
                 display: 'flex',
-                gap: '1rem'
+                gap: '1rem',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
               {selectedPokemonDetails?.abilities.map((ability, index) => (
@@ -227,7 +229,7 @@ export const PokemonDetails: React.FC<PokemonDetailsProps> = () => {
 
                 <LinearProgress
                   variant="determinate"
-                  value={selectedPokemonDetails?.stats[1].base_stat}
+                  value={100}
                   color="error"
                   sx={{
                     width: '100%',
